@@ -6,15 +6,6 @@ type ProjectsProps = {
   onSelect: (project: Project) => void
 }
 
-function initials(title: string) {
-  const words = title.split(/\s+/).filter(Boolean)
-  if (words.length === 1) return (words[0] ?? '').slice(0, 2).toUpperCase()
-  return words
-    .slice(0, 2)
-    .map((word) => word[0]?.toUpperCase() ?? '')
-    .join('')
-}
-
 export default function Projects({ onSelect }: ProjectsProps) {
   return (
     <section className="section" id="proyectos">
@@ -37,11 +28,7 @@ export default function Projects({ onSelect }: ProjectsProps) {
             <Reveal key={project.id} delay={index * 110}>
               <article className="project-card">
                 <div className="project-thumb">
-                  {project.image ? (
-                    <img src={project.image} alt={`Captura de ${project.title}`} />
-                  ) : (
-                    <span className="thumb-icon">{initials(project.title)}</span>
-                  )}
+                  <img src={project.image} alt={`Captura de ${project.title}`} />
                 </div>
 
                 <div className="project-body">

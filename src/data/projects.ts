@@ -23,6 +23,8 @@ export const projects: Project[] = [
       'Agenda médica para descubrir especialistas, revisar disponibilidad y reservar consultas en varios pasos. Perfil de paciente, historial de citas y panel de administración, con modo demo local o conexión a Supabase (Auth, PostgreSQL y RLS).',
     tags: ['React', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL'],
     repoUrl: 'https://github.com/Joel-18/TurnoCero',
+    demoUrl: 'https://turno-cero.vercel.app',
+    image: 'capturas/turnocero.png',
   },
   {
     id: 'techstore',

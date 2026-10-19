@@ -860,16 +860,6 @@ h4 {
   object-fit: cover;
 }
 
-.project-thumb .thumb-icon {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.92);
-  letter-spacing: -0.04em;
-  position: relative;
-  z-index: 1;
-}
-
 .project-body {
   padding: 24px;
   display: flex;
@@ -1493,14 +1483,15 @@ h4 {
 
 .certs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: 1fr;
   gap: 26px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 760px) {
   .certs-grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
-    justify-content: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 1080px;
+    margin-inline: auto;
   }
 }
 
