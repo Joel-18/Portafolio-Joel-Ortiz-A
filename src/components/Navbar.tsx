@@ -4,6 +4,7 @@ const LINKS = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'sobre-mi', label: 'Sobre mí' },
   { id: 'habilidades', label: 'Habilidades' },
+  { id: 'proceso', label: 'Proceso' },
   { id: 'proyectos', label: 'Proyectos' },
   { id: 'experiencia', label: 'Experiencia' },
   { id: 'contacto', label: 'Contacto' },
@@ -59,7 +60,7 @@ export default function Navbar() {
         </div>
 
         <a href="#contacto" className="btn btn-primary btn-sm nav-cta">
-          Contrátame
+          Contáctame
         </a>
 
         <button

@@ -1,59 +1,6 @@
-import { useEffect, useState } from 'react'
-
-const ROLES = [
-  'Desarrollador Full-Stack',
-  'Creador de interfaces modernas',
-  'Resolutor de problemas con código',
-]
-
-function useTypewriter() {
-  const [text, setText] = useState(ROLES[0])
-
-  useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return
-
-    let roleIndex = 0
-    let charIndex = ROLES[0].length
-    let deleting = true
-    let timeoutId = 0
-
-    const tick = () => {
-      const role = ROLES[roleIndex]
-
-      if (!deleting) {
-        charIndex += 1
-        setText(role.slice(0, charIndex))
-        if (charIndex >= role.length) {
-          deleting = true
-          timeoutId = window.setTimeout(tick, 2000)
-          return
-        }
-        timeoutId = window.setTimeout(tick, 70)
-        return
-      }
-
-      charIndex -= 1
-      setText(role.slice(0, charIndex))
-      if (charIndex <= 0) {
-        deleting = false
-        roleIndex = (roleIndex + 1) % ROLES.length
-        timeoutId = window.setTimeout(tick, 350)
-        return
-      }
-      timeoutId = window.setTimeout(tick, 38)
-    }
-
-    timeoutId = window.setTimeout(tick, 600)
-    return () => window.clearTimeout(timeoutId)
-  }, [])
-
-  return text
-}
+import fotoPerfil from '../assets/avatar.jpg'
 
 export default function Hero() {
-  const typed = useTypewriter()
-
   return (
     <section className="hero" id="inicio">
       <div className="container hero-grid">
@@ -67,14 +14,14 @@ export default function Hero() {
           </h1>
 
           <p className="hero-role">
-            <span className="typewriter">{typed}</span>
+            <span className="typewriter">Programador Junior</span>
             <span className="caret" aria-hidden="true" />
           </p>
 
           <p className="hero-desc">
             Construyo experiencias web rápidas, accesibles y con personalidad. Me enfoco en
-            escribir código limpio y en transformar ideas en productos que la gente disfrute
-            usando.
+            escribir código limpio y en transformar ideas en proyectos personales que la gente
+            disfrute usando.
           </p>
 
           <div className="hero-actions">
@@ -85,7 +32,7 @@ export default function Hero() {
               Contáctame
             </a>
             <a
-              href="https://github.com/tu-usuario"
+              href="https://github.com/Joel-18"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-ghost"
@@ -97,7 +44,9 @@ export default function Hero() {
 
         <div className="hero-visual">
           <div className="avatar-ring">
-            <div className="avatar">JO</div>
+            <div className="avatar">
+              <img src={fotoPerfil} alt="Foto de perfil de Joel Ortiz" />
+            </div>
           </div>
           <span className="orbit-chip">React</span>
           <span className="orbit-chip">TypeScript</span>

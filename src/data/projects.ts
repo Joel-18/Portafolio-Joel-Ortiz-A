@@ -10,35 +10,50 @@ export type Project = {
 
 /**
  * CONFIGURACIÓN DE PROYECTOS
- * Agrega o edita los proyectos aquí. Cada proyecto necesita:
+ * Cada proyecto necesita:
  *  - repoUrl: enlace al repositorio en GitHub (siempre)
- *  - demoUrl: enlace a la demo en vivo (opcional, se embebe en un iframe)
- *  - image:  captura del proyecto en /public (opcional, ej: "capturas/proyecto-1.png")
+ *  - demoUrl: enlace a la demo desplegada (opcional, se embebe en un iframe)
+ *  - image:  captura del proyecto en /public (opcional, ej: "capturas/techstore.png")
  */
 export const projects: Project[] = [
   {
-    id: 'proyecto-1',
-    title: 'Nombre del proyecto 1',
+    id: 'techstore',
+    title: 'TechStore',
     description:
-      'Descripción breve: qué problema resuelve, qué tecnologías usaste y cuál fue tu aporte concreto.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    repoUrl: 'https://github.com/tu-usuario/proyecto-1',
+      'Tienda online de tecnología: catálogo con 66 productos y 11 categorías, búsqueda, filtros, carrito, favoritos, autenticación simulada y checkout. 100% frontend con React Router y Context API.',
+    tags: ['React', 'React Router', 'Context API', 'Vite', 'localStorage'],
+    repoUrl: 'https://github.com/Joel-18/TechStore',
+    demoUrl: 'https://joel-18.github.io/TechStore/',
+    image: 'capturas/techstore.png',
   },
   {
-    id: 'proyecto-2',
-    title: 'Nombre del proyecto 2',
+    id: 'gymtrack',
+    title: 'GymTrack',
     description:
-      'Descripción breve: qué problema resuelve, qué tecnologías usaste y cuál fue tu aporte concreto.',
-    tags: ['React', 'TypeScript', 'Vite'],
-    repoUrl: 'https://github.com/tu-usuario/proyecto-2',
-    demoUrl: 'https://tu-usuario.github.io/proyecto-2',
+      'Gestión de gimnasio: 48 ejercicios en 8 grupos musculares, creación de rutinas, sesión de entrenamiento en vivo con temporizador, historial y gráficos de progreso.',
+    tags: ['React', 'React Router', 'Context API', 'recharts', 'Vite'],
+    repoUrl: 'https://github.com/Joel-18/GymTrack',
+    demoUrl: 'https://joel-18.github.io/GymTrack/',
+    image: 'capturas/gymtrack.png',
   },
   {
-    id: 'proyecto-3',
-    title: 'Nombre del proyecto 3',
+    id: 'restaurante-ortiz',
+    title: 'Restaurante Ortiz',
     description:
-      'Descripción breve: qué problema resuelve, qué tecnologías usaste y cuál fue tu aporte concreto.',
-    tags: ['Java', 'POO', 'Base de datos'],
-    repoUrl: 'https://github.com/tu-usuario/proyecto-3',
+      'Aplicación de restaurante con menú filtrado por categorías, carrito con control de cantidades, cálculo automático del total, vaciado del carrito y diseño responsive.',
+    tags: ['React', 'JavaScript', 'Context API', 'Vite'],
+    repoUrl: 'https://github.com/Joel-18/Restaurante-React',
+    demoUrl: 'https://joel-18.github.io/Restaurante-React/',
+    image: 'capturas/restaurante.png',
+  },
+  {
+    id: 'calculadora-react',
+    title: 'Calculadora React',
+    description:
+      'Calculadora con suma, resta, multiplicación y división, decimales, borrado y pantalla limpia. Lógica encapsulada en un hook personalizado (useCalculator).',
+    tags: ['React', 'JavaScript', 'Hooks', 'Vite'],
+    repoUrl: 'https://github.com/Joel-18/Calculadora-React',
+    demoUrl: 'https://joel-18.github.io/Calculadora-React/',
+    image: 'capturas/calculadora.png',
   },
 ]

@@ -1,10 +1,41 @@
 import Reveal from './Reveal'
 
+const CERTS = [
+  {
+    id: 'alfabetizacion-ia',
+    title: 'Alfabetización en IA',
+    image: 'certificados/certificado-alfabetizacion-ia.png',
+    href: 'certificados/certificado-alfabetizacion-ia.pdf',
+    linkLabel: 'Ver PDF',
+  },
+  {
+    id: 'aws',
+    title: 'Fundamentos de AWS',
+    image: 'certificados/certificado-aws.jpeg',
+    href: 'certificados/certificado-aws.jpeg',
+    linkLabel: 'Ver imagen',
+  },
+  {
+    id: 'daxus-ia',
+    title: 'Inmersión Agentes de IA en la Práctica',
+    image: 'certificados/certificado-daxus-inmersion-ia.png',
+    href: 'certificados/certificado-daxus-inmersion-ia.pdf',
+    linkLabel: 'Ver PDF',
+  },
+  {
+    id: 'big-school-ia',
+    title: 'Iniciación al Desarrollo con IA',
+    image: 'certificados/certificado-big-school.jpeg',
+    href: 'certificados/certificado-big-school.jpeg',
+    linkLabel: 'Ver imagen',
+  },
+]
+
 const ITEMS = [
   {
     date: '2024 — Actualidad',
-    title: 'Desarrollo Web Full-Stack',
-    place: 'Formación autodidacta y proyectos propios',
+    title: 'Programación Web',
+    place: 'Formación autodidacta y proyectos personales',
     desc: 'Domino de HTML, CSS, JavaScript y React mediante proyectos prácticos desplegados en GitHub Pages.',
   },
   {
@@ -54,6 +85,40 @@ export default function Experience() {
               </article>
             </Reveal>
           ))}
+        </div>
+
+        <div className="certs-block">
+          <Reveal>
+            <h3 className="certs-title">Certificados obtenidos</h3>
+          </Reveal>
+          <div className="certs-grid">
+            {CERTS.map((cert, index) => (
+              <Reveal key={cert.id} delay={index * 130}>
+                <article className="cert-card">
+                  <a
+                    className="cert-media"
+                    href={cert.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Abrir ${cert.title}`}
+                  >
+                    <img src={cert.image} alt={`Certificado de ${cert.title}`} loading="lazy" />
+                  </a>
+                  <div className="cert-body">
+                    <h3>{cert.title}</h3>
+                    <a
+                      className="btn btn-ghost btn-sm"
+                      href={cert.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {cert.linkLabel} ↗
+                    </a>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

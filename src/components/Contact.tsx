@@ -1,25 +1,63 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent, type MouseEvent } from 'react'
 import Reveal from './Reveal'
 
-const EMAIL = 'tu-email@example.com'
-const GITHUB = 'https://github.com/tu-usuario'
-const LINKEDIN = 'https://www.linkedin.com/in/tu-usuario'
+const EMAIL = 'joel.18.ortiz@gmail.com'
+const GITHUB = 'https://github.com/Joel-18'
+const LINKEDIN = 'https://www.linkedin.com/in/joel-ortiz-231a3136a'
+const WHATSAPP =
+  'https://wa.me/18292761619?text=Hola%20Joel%2C%20vi%20tu%20portafolio%20y%20quiero%20contactarte.'
 
-const CONTACTS = [
-  { icon: '✉', label: 'Email', value: EMAIL, href: `mailto:${EMAIL}` },
-  { icon: 'GH', label: 'GitHub', value: 'tu-usuario', href: GITHUB },
-  { icon: 'in', label: 'LinkedIn', value: 'tu-usuario', href: LINKEDIN },
+type ContactLink = {
+  icon: string
+  label: string
+  value: string
+  href: string
+  copy?: string
+}
+
+const CONTACTS: ContactLink[] = [
+  { icon: '✉', label: 'Email', value: EMAIL, href: `mailto:${EMAIL}`, copy: EMAIL },
+  { icon: 'WA', label: 'WhatsApp', value: '+1 829-276-1619', href: WHATSAPP },
+  { icon: 'GH', label: 'GitHub', value: 'Joel-18', href: GITHUB },
+  { icon: 'in', label: 'LinkedIn', value: 'joel-ortiz-231a3136a', href: LINKEDIN },
 ]
 
 export default function Contact() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [toast, setToast] = useState<string | null>(null)
+  const timer = useRef<number | undefined>(undefined)
 
-  const onSubmit = (event: FormEvent) => {
+  useEffect(() => () => window.clearTimeout(timer.current), [])
+
+  const showToast = (text: string) => {
+    window.clearTimeout(timer.current)
+    setToast(text)
+    timer.current = window.setTimeout(() => setToast(null), 3400)
+  }
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  const onCopyEmail = async (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    const copied = await copyToClipboard(EMAIL)
+    showToast(copied ? '✓ Email copiado al portapapeles' : `Email: ${EMAIL}`)
+  }
+
+  const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
     const subject = encodeURIComponent(`Mensaje de ${name} — Portafolio`)
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`)
+    await copyToClipboard(EMAIL)
+    showToast('✓ Email copiado — si tu correo no se abre, pégalo donde prefieras')
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
   }
 
@@ -49,6 +87,7 @@ export default function Contact() {
                   href={contact.href}
                   target={contact.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
+                  onClick={contact.copy ? onCopyEmail : undefined}
                 >
                   <span className="icon">{contact.icon}</span>
                   <span>
@@ -109,6 +148,12 @@ export default function Contact() {
           </Reveal>
         </div>
       </div>
+
+      {toast && (
+        <div className="toast" role="status">
+          {toast}
+        </div>
+      )}
     </section>
   )
 }
