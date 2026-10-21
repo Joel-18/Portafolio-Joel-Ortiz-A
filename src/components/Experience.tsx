@@ -29,9 +29,22 @@ const CERTS = [
     href: 'certificados/certificado-big-school.jpeg',
     linkLabel: 'Ver imagen',
   },
+  {
+    id: 'aprende-claude',
+    title: 'Aprende Claude desde cero',
+    image: 'certificados/certificado-aprende-claude.png',
+    href: 'certificados/certificado-aprende-claude.pdf',
+    linkLabel: 'Ver PDF',
+  },
 ]
 
 const ITEMS = [
+  {
+    date: 'Octubre 2026',
+    title: 'Formación en Inteligencia Artificial',
+    place: 'ITLA · NETZUN · Daxus Latam',
+    desc: 'Alfabetización en IA, la charla "Aprende Claude desde cero" y la inmersión en Agentes de IA en la Práctica — certificados al final de esta sección.',
+  },
   {
     date: '2024 — Actualidad',
     title: 'Programación Web',

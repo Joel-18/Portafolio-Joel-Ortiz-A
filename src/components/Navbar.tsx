@@ -46,7 +46,7 @@ export default function Navbar() {
           Joel<span> Ortiz.</span>
         </a>
 
-        <div className={`nav-links ${open ? 'is-open' : ''}`}>
+        <div className={`nav-links ${open ? 'is-open' : ''}`} id="nav-links">
           {LINKS.map((link) => (
             <a
               key={link.id}
@@ -68,6 +68,7 @@ export default function Navbar() {
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={open}
+          aria-controls="nav-links"
         >
           <span />
           <span />

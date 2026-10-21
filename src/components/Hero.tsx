@@ -50,7 +50,7 @@ export default function Hero() {
           </div>
           <span className="orbit-chip">React</span>
           <span className="orbit-chip">TypeScript</span>
-          <span className="orbit-chip">Node.js</span>
+          <span className="orbit-chip">Vite</span>
         </div>
       </div>
     </section>

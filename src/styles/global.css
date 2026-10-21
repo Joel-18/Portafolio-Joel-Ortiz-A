@@ -94,6 +94,26 @@ h4 {
   color: #fff;
 }
 
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--violet);
+  color: #fff;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
 /* ---------- Layout ---------- */
 .container {
   width: min(1140px, 92%);
@@ -1181,7 +1201,7 @@ h4 {
   display: grid;
   place-items: center;
   background: var(--gradient);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
 }
 
 .contact-item .label {
@@ -1328,11 +1348,15 @@ h4 {
     background: rgba(11, 11, 26, 0.98);
     border-bottom: 1px solid var(--border);
     transform: translateY(-140%);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    visibility: hidden;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.35s;
   }
 
   .nav-links.is-open {
     transform: none;
+    visibility: visible;
   }
 
   .nav-links a {

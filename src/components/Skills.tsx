@@ -39,7 +39,7 @@ export default function Skills() {
                   className="skill-icon"
                   style={{ '--icon-color': skill.color } as CSSProperties}
                 >
-                  <skill.Icon />
+                  <skill.Icon aria-hidden="true" />
                 </div>
                 <h3>{skill.name}</h3>
                 <p>{skill.desc}</p>

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent, type MouseEvent } from 'react'
+import type { IconType } from 'react-icons'
+import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa6'
 import Reveal from './Reveal'
 
 const EMAIL = 'joel.18.ortiz@gmail.com'
@@ -8,7 +10,7 @@ const WHATSAPP =
   'https://wa.me/18292761619?text=Hola%20Joel%2C%20vi%20tu%20portafolio%20y%20quiero%20contactarte.'
 
 type ContactLink = {
-  icon: string
+  icon: IconType
   label: string
   value: string
   href: string
@@ -16,10 +18,10 @@ type ContactLink = {
 }
 
 const CONTACTS: ContactLink[] = [
-  { icon: '✉', label: 'Email', value: EMAIL, href: `mailto:${EMAIL}`, copy: EMAIL },
-  { icon: 'WA', label: 'WhatsApp', value: '+1 829-276-1619', href: WHATSAPP },
-  { icon: 'GH', label: 'GitHub', value: 'Joel-18', href: GITHUB },
-  { icon: 'in', label: 'LinkedIn', value: 'joel-ortiz-231a3136a', href: LINKEDIN },
+  { icon: FaEnvelope, label: 'Email', value: EMAIL, href: `mailto:${EMAIL}`, copy: EMAIL },
+  { icon: FaWhatsapp, label: 'WhatsApp', value: '+1 829-276-1619', href: WHATSAPP },
+  { icon: FaGithub, label: 'GitHub', value: 'Joel-18', href: GITHUB },
+  { icon: FaLinkedin, label: 'LinkedIn', value: 'joel-ortiz-231a3136a', href: LINKEDIN },
 ]
 
 export default function Contact() {
@@ -89,7 +91,9 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   onClick={contact.copy ? onCopyEmail : undefined}
                 >
-                  <span className="icon">{contact.icon}</span>
+                  <span className="icon" aria-hidden="true">
+                    <contact.icon />
+                  </span>
                   <span>
                     <span className="label">{contact.label}</span>
                     <br />

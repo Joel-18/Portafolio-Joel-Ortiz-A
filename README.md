@@ -57,7 +57,7 @@ Edita **`src/data/projects.ts`**:
    git init
    git add .
    git commit -m "Portafolio Joel Ortiz"
-   git branch -main
+   git branch -M main
    git remote add origin https://github.com/TU-USUARIO/TU-REPO.git
    git push -u origin main
    ```

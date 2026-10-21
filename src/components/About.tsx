@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal'
+import { projects } from '../data/projects'
 
 function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -57,7 +58,7 @@ function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
 type Stat = { label: string; to?: number; suffix?: string }
 
 const STATS: Stat[] = [
-  { label: 'Proyectos personales' },
+  { to: projects.length, label: 'Proyectos personales' },
   { to: 8, suffix: '+', label: 'Tecnologías manejadas' },
   { to: 100, suffix: '%', label: 'Compromiso y puntualidad' },
 ]

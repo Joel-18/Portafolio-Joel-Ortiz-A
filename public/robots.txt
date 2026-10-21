@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joel-18.github.io/Portafolio-Joel-Ortiz-A/sitemap.xml

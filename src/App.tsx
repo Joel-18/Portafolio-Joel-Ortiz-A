@@ -19,7 +19,10 @@ export default function App() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main>
+      <a className="skip-link" href="#contenido">
+        Saltar al contenido
+      </a>
+      <main id="contenido">
         <Hero />
         <About />
         <Skills />

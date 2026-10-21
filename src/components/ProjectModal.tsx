@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import type { Project } from '../data/projects'
 
 type ProjectModalProps = {
@@ -16,20 +16,62 @@ function initials(title: string) {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const overlayRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     if (!project) return
 
+    const overlay = overlayRef.current
+    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null
+
+    const focusables = () =>
+      overlay
+        ? Array.from(
+            overlay.querySelectorAll<HTMLElement>(
+              'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])',
+            ),
+          ).filter((el) => !el.hasAttribute('disabled'))
+        : []
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+      if (event.key === 'Escape') {
+        onClose()
+        return
+      }
+      if (event.key !== 'Tab') return
+
+      const items = focusables()
+      if (items.length === 0) return
+
+      const first = items[0]
+      const last = items[items.length - 1]
+      const active = document.activeElement
+      const inside = active instanceof Node && overlay?.contains(active)
+
+      if (event.shiftKey) {
+        if (!inside || active === first) {
+          event.preventDefault()
+          last.focus()
+        }
+      } else if (!inside || active === last) {
+        event.preventDefault()
+        first.focus()
+      }
     }
 
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     document.addEventListener('keydown', onKeyDown)
 
+    const frame = requestAnimationFrame(() => {
+      overlay?.querySelector<HTMLElement>('.modal-close')?.focus()
+    })
+
     return () => {
+      cancelAnimationFrame(frame)
       document.body.style.overflow = previousOverflow
       document.removeEventListener('keydown', onKeyDown)
+      previouslyFocused?.focus()
     }
   }, [project, onClose])
 
@@ -40,6 +82,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   return (
     <div
       className="modal-overlay"
+      ref={overlayRef}
       role="dialog"
       aria-modal="true"
       aria-label={`Proyecto ${project.title}`}
