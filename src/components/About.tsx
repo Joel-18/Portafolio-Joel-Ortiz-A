@@ -80,7 +80,7 @@ export default function About() {
           <Reveal>
             <div className="about-text">
               <p>
-              Soy <strong>Joel Ortiz</strong>, programador junior de 25 años, dominicano, en
+              Soy <strong>Joel Ortiz</strong>, programador junior de 26 años, dominicano, en
               formación con foco en el ecosistema web moderno. Me gusta entender el problema
               antes de escribir la primera línea de código.
               </p>
@@ -95,7 +95,7 @@ export default function About() {
                 hacer las cosas bien, hablemos.
               </p>
               <div className="about-chips">
-                <span className="tag">25 años</span>
+                <span className="tag">26 años</span>
                 <span className="tag">Dominicano</span>
                 <span className="tag">Programador Junior</span>
                 <span className="tag">Disponible</span>
