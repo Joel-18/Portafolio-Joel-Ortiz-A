@@ -3,31 +3,88 @@ import { SiCss, SiGit, SiHtml5, SiJavascript, SiReact, SiTypescript, SiVite } fr
 import { FaDatabase } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
 import Reveal from './Reveal'
+import { useLang } from '../i18n/context'
+import type { L10n } from '../i18n/dictionary'
 
-const SKILLS: { Icon: IconType; color: string; name: string; desc: string }[] = [
-  { Icon: SiHtml5, color: '#E34F26', name: 'HTML5', desc: 'Estructura semántica y accesible.' },
-  { Icon: SiCss, color: '#1572B6', name: 'CSS3', desc: 'Layouts modernos, animaciones y responsive.' },
-  { Icon: SiJavascript, color: '#F7DF1E', name: 'JavaScript', desc: 'Lógica, DOM y asíncrono.' },
-  { Icon: SiTypescript, color: '#3178C6', name: 'TypeScript', desc: 'Tipado seguro en proyectos reales.' },
-  { Icon: SiReact, color: '#61DAFB', name: 'React', desc: 'Componentes, hooks y estado.' },
-  { Icon: SiVite, color: '#646CFF', name: 'Vite', desc: 'Build rápido y desarrollo ágil.' },
-  { Icon: SiGit, color: '#F05032', name: 'Git & GitHub', desc: 'Control de versiones y flujo de equipo.' },
-  { Icon: FaDatabase, color: '#38BDF8', name: 'SQL', desc: 'Consultas y modelado de bases de datos.' },
+const SKILLS: { Icon: IconType; color: string; name: string; desc: L10n }[] = [
+  {
+    Icon: SiHtml5,
+    color: '#E34F26',
+    name: 'HTML5',
+    desc: { es: 'Estructura semántica y accesible.', en: 'Semantic and accessible structure.' },
+  },
+  {
+    Icon: SiCss,
+    color: '#1572B6',
+    name: 'CSS3',
+    desc: {
+      es: 'Layouts modernos, animaciones y responsive.',
+      en: 'Modern layouts, animations and responsive design.',
+    },
+  },
+  {
+    Icon: SiJavascript,
+    color: '#F7DF1E',
+    name: 'JavaScript',
+    desc: { es: 'Lógica, DOM y asíncrono.', en: 'Logic, DOM and async code.' },
+  },
+  {
+    Icon: SiTypescript,
+    color: '#3178C6',
+    name: 'TypeScript',
+    desc: {
+      es: 'Tipado seguro en proyectos reales.',
+      en: 'Type safety in real-world projects.',
+    },
+  },
+  {
+    Icon: SiReact,
+    color: '#61DAFB',
+    name: 'React',
+    desc: { es: 'Componentes, hooks y estado.', en: 'Components, hooks and state.' },
+  },
+  {
+    Icon: SiVite,
+    color: '#646CFF',
+    name: 'Vite',
+    desc: {
+      es: 'Build rápido y desarrollo ágil.',
+      en: 'Fast builds and agile development.',
+    },
+  },
+  {
+    Icon: SiGit,
+    color: '#F05032',
+    name: 'Git & GitHub',
+    desc: {
+      es: 'Control de versiones y flujo de equipo.',
+      en: 'Version control and team workflows.',
+    },
+  },
+  {
+    Icon: FaDatabase,
+    color: '#38BDF8',
+    name: 'SQL',
+    desc: {
+      es: 'Consultas y modelado de bases de datos.',
+      en: 'Queries and database modeling.',
+    },
+  },
 ]
 
 export default function Skills() {
+  const { t, lang } = useLang()
+
   return (
     <section className="section" id="habilidades">
       <div className="container">
         <Reveal>
           <div className="section-head">
-            <span className="section-eyebrow">Habilidades</span>
+            <span className="section-eyebrow">{t('skills.eyebrow')}</span>
             <h2 className="section-title">
-              Tecnologías que <span className="gradient-text">domino</span>
+              {t('skills.titleA')} <span className="gradient-text">{t('skills.titleB')}</span>
             </h2>
-            <p className="section-sub">
-              Un set práctico para construir productos completos, del diseño al despliegue.
-            </p>
+            <p className="section-sub">{t('skills.sub')}</p>
           </div>
         </Reveal>
 
@@ -42,7 +99,7 @@ export default function Skills() {
                   <skill.Icon aria-hidden="true" />
                 </div>
                 <h3>{skill.name}</h3>
-                <p>{skill.desc}</p>
+                <p>{skill.desc[lang]}</p>
               </article>
             </Reveal>
           ))}

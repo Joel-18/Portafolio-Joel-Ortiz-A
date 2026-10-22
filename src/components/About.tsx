@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal'
 import { projects } from '../data/projects'
+import { useLang } from '../i18n/context'
+import Rich from '../i18n/Rich'
+import type { TKey } from '../i18n/dictionary'
 
 function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -55,23 +58,25 @@ function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
   )
 }
 
-type Stat = { label: string; to: number; suffix?: string }
+type Stat = { id: string; label: TKey; to: number; suffix?: string }
 
 const STATS: Stat[] = [
-  { to: projects.length, label: 'Proyectos personales' },
-  { to: 8, suffix: '+', label: 'Tecnologías manejadas' },
-  { to: 100, suffix: '%', label: 'Compromiso y puntualidad' },
+  { id: 'projects', to: projects.length, label: 'about.statProjects' },
+  { id: 'tech', to: 8, suffix: '+', label: 'about.statTech' },
+  { id: 'commitment', to: 100, suffix: '%', label: 'about.statCommitment' },
 ]
 
 export default function About() {
+  const { t } = useLang()
+
   return (
     <section className="section" id="sobre-mi">
       <div className="container">
         <Reveal>
           <div className="section-head">
-            <span className="section-eyebrow">Sobre mí</span>
+            <span className="section-eyebrow">{t('about.eyebrow')}</span>
             <h2 className="section-title">
-              Perfil <span className="gradient-text">profesional</span>
+              {t('about.titleA')} <span className="gradient-text">{t('about.titleB')}</span>
             </h2>
           </div>
         </Reveal>
@@ -80,25 +85,19 @@ export default function About() {
           <Reveal>
             <div className="about-text">
               <p>
-              Soy <strong>Joel Ortiz</strong>, programador junior de 26 años, dominicano, en
-              formación con foco en el ecosistema web moderno. Me gusta entender el problema
-              antes de escribir la primera línea de código.
+                <Rich text={t('about.p1')} />
               </p>
               <p>
-                Trabajo con <strong>React, TypeScript y Vite</strong> para interfaces rápidas, y
-                cuido los detalles que hacen la diferencia: rendimiento, accesibilidad y una
-                experiencia visual que transmita seriedad.
+                <Rich text={t('about.p2')} />
               </p>
               <p>
-                Busco un equipo donde pueda <strong>aprender rápido, aportar desde el día uno</strong>{' '}
-                y crecer profesionalmente. Si buscas a alguien comprometido y con ganas de
-                hacer las cosas bien, hablemos.
+                <Rich text={t('about.p3')} />
               </p>
               <div className="about-chips">
-                <span className="tag">26 años</span>
-                <span className="tag">Dominicano</span>
-                <span className="tag">Programador Junior</span>
-                <span className="tag">Disponible</span>
+                <span className="tag">{t('about.chipAge')}</span>
+                <span className="tag">{t('about.chipCountry')}</span>
+                <span className="tag">{t('about.chipRole')}</span>
+                <span className="tag">{t('about.chipAvailable')}</span>
               </div>
             </div>
           </Reveal>
@@ -106,11 +105,11 @@ export default function About() {
           <Reveal delay={150}>
             <div className="stats-grid">
               {STATS.map((stat) => (
-                <div className="stat-card" key={stat.label}>
+                <div className="stat-card" key={stat.id}>
                   <div className="stat-number">
                     <Counter to={stat.to} suffix={stat.suffix} />
                   </div>
-                  <div className="stat-label">{stat.label}</div>
+                  <div className="stat-label">{t(stat.label)}</div>
                 </div>
               ))}
             </div>

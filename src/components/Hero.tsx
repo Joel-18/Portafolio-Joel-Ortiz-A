@@ -1,36 +1,35 @@
 import fotoPerfil from '../assets/avatar.jpg'
 import { GITHUB } from '../data/contact'
+import { useLang } from '../i18n/context'
 
 export default function Hero() {
+  const { t } = useLang()
+
   return (
     <section className="hero" id="inicio">
       <div className="container hero-grid">
         <div>
           <span className="hero-badge">
-            <span className="dot" /> Disponible para oportunidades
+            <span className="dot" /> {t('hero.badge')}
           </span>
 
           <h1>
-            Hola, soy <span className="gradient-text">Joel Ortiz</span>
+            {t('hero.hello')} <span className="gradient-text">Joel Ortiz</span>
           </h1>
 
           <p className="hero-role">
-            <span className="typewriter">Programador Junior</span>
+            <span className="typewriter">{t('hero.role')}</span>
             <span className="caret" aria-hidden="true" />
           </p>
 
-          <p className="hero-desc">
-            Construyo experiencias web rápidas, accesibles y con personalidad. Me enfoco en
-            escribir código limpio y en transformar ideas en proyectos personales que la gente
-            disfrute usando.
-          </p>
+          <p className="hero-desc">{t('hero.desc')}</p>
 
           <div className="hero-actions">
             <a href="#proyectos" className="btn btn-primary">
-              Ver proyectos
+              {t('hero.viewProjects')}
             </a>
             <a href="#contacto" className="btn btn-ghost">
-              Contáctame
+              {t('hero.contact')}
             </a>
             <a
               href={GITHUB}
@@ -46,7 +45,7 @@ export default function Hero() {
         <div className="hero-visual">
           <div className="avatar-ring">
             <div className="avatar">
-              <img src={fotoPerfil} alt="Foto de perfil de Joel Ortiz" />
+              <img src={fotoPerfil} alt={t('hero.avatarAlt')} />
             </div>
           </div>
           <span className="orbit-chip">React</span>

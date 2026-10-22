@@ -3,6 +3,7 @@ import type { IconType } from 'react-icons'
 import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa6'
 import Reveal from './Reveal'
 import { EMAIL, GITHUB, LINKEDIN, WHATSAPP } from '../data/contact'
+import { useLang } from '../i18n/context'
 
 type ContactLink = {
   icon: IconType
@@ -25,6 +26,7 @@ export default function Contact() {
   const [message, setMessage] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const timer = useRef<number | undefined>(undefined)
+  const { t } = useLang()
 
   useEffect(() => () => window.clearTimeout(timer.current), [])
 
@@ -46,15 +48,15 @@ export default function Contact() {
   const onCopyEmail = async (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     const copied = await copyToClipboard(EMAIL)
-    showToast(copied ? '✓ Email copiado al portapapeles' : `Email: ${EMAIL}`)
+    showToast(copied ? t('contact.toastCopied') : `${t('contact.toastEmail')} ${EMAIL}`)
   }
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    const subject = encodeURIComponent(`Mensaje de ${name} — Portafolio`)
+    const subject = encodeURIComponent(t('contact.subject', { name }))
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`)
     await copyToClipboard(EMAIL)
-    showToast('✓ Email copiado — si tu correo no se abre, pégalo donde prefieras')
+    showToast(t('contact.toastSubmit'))
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
   }
 
@@ -63,14 +65,12 @@ export default function Contact() {
       <div className="container">
         <Reveal>
           <div className="section-head">
-            <span className="section-eyebrow">Contacto</span>
+            <span className="section-eyebrow">{t('contact.eyebrow')}</span>
             <h2 className="section-title">
-              ¿Hablamos? <span className="gradient-text">Estoy disponible</span>
+              {t('contact.titleA')}{' '}
+              <span className="gradient-text">{t('contact.titleB')}</span>
             </h2>
-            <p className="section-sub">
-              Escríbeme y te responderé lo antes posible. Me encantará conocer tu proyecto o
-              vacante.
-            </p>
+            <p className="section-sub">{t('contact.sub')}</p>
           </div>
         </Reveal>
 
@@ -103,24 +103,24 @@ export default function Contact() {
             <form className="contact-form" onSubmit={onSubmit}>
               <div className="form-row">
                 <div className="field">
-                  <label htmlFor="name">Nombre</label>
+                  <label htmlFor="name">{t('contact.labelName')}</label>
                   <input
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="Tu nombre"
+                    placeholder={t('contact.phName')}
                     required
                     value={name}
                     onChange={(event) => setName(event.target.value)}
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">{t('contact.labelEmail')}</label>
                   <input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="tu@email.com"
+                    placeholder={t('contact.phEmail')}
                     required
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
@@ -129,11 +129,11 @@ export default function Contact() {
               </div>
 
               <div className="field">
-                <label htmlFor="message">Mensaje</label>
+                <label htmlFor="message">{t('contact.labelMessage')}</label>
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Cuéntame sobre la vacante o el proyecto..."
+                  placeholder={t('contact.phMessage')}
                   required
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
@@ -141,7 +141,7 @@ export default function Contact() {
               </div>
 
               <button className="btn btn-primary" type="submit">
-                Enviar mensaje
+                {t('contact.submit')}
               </button>
             </form>
           </Reveal>

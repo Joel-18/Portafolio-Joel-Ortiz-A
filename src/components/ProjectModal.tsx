@@ -1,22 +1,16 @@
 import { useEffect, useRef } from 'react'
 import type { Project } from '../data/projects'
+import { useLang } from '../i18n/context'
+import { initials } from '../utils/initials'
 
 type ProjectModalProps = {
   project: Project | null
   onClose: () => void
 }
 
-function initials(title: string) {
-  const words = title.split(/\s+/).filter(Boolean)
-  if (words.length === 1) return (words[0] ?? '').slice(0, 2).toUpperCase()
-  return words
-    .slice(0, 2)
-    .map((word) => word[0]?.toUpperCase() ?? '')
-    .join('')
-}
-
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null)
+  const { t, lang } = useLang()
 
   useEffect(() => {
     if (!project) return
@@ -77,6 +71,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   if (!project) return null
 
+  const title = project.title[lang]
   const canEmbed = Boolean(project.demoUrl)
 
   return (
@@ -85,7 +80,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       ref={overlayRef}
       role="dialog"
       aria-modal="true"
-      aria-label={`Proyecto ${project.title}`}
+      aria-label={t('modal.projectAria', { title })}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose()
       }}
@@ -93,7 +88,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       <div className="modal">
         <header className="modal-head">
           <div>
-            <h3>{project.title}</h3>
+            <h3>{title}</h3>
             <div className="tags">
               {project.tags.map((tag) => (
                 <span className="tag" key={tag}>
@@ -102,7 +97,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               ))}
             </div>
           </div>
-          <button className="modal-close" onClick={onClose} aria-label="Cerrar proyecto">
+          <button className="modal-close" onClick={onClose} aria-label={t('modal.closeAria')}>
             ✕
           </button>
         </header>
@@ -112,19 +107,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <iframe
               className="modal-frame"
               src={project.demoUrl}
-              title={`Demo de ${project.title}`}
+              title={t('modal.demoTitle', { title })}
               loading="lazy"
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
             />
           ) : (
             <div className="modal-fallback">
-              <div className="thumb-icon">{initials(project.title)}</div>
-              <h4>{project.title}</h4>
-              <p>{project.description}</p>
-              <p>
-                Este proyecto se ejecuta desde su repositorio de GitHub: los repositorios no
-                permiten ser embebidos, así que se abre en una pestaña nueva.
-              </p>
+              <div className="thumb-icon">{initials(title)}</div>
+              <h4>{title}</h4>
+              <p>{project.description[lang]}</p>
+              <p>{t('modal.noEmbed')}</p>
             </div>
           )}
         </div>
@@ -136,7 +128,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Ver repositorio ↗
+            {t('modal.repo')} ↗
           </a>
           {canEmbed && (
             <a
@@ -145,11 +137,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Abrir demo en pestaña ↗
+              {t('modal.openDemo')} ↗
             </a>
           )}
           <button className="btn btn-primary btn-sm" onClick={onClose}>
-            Cerrar
+            {t('modal.close')}
           </button>
         </footer>
       </div>

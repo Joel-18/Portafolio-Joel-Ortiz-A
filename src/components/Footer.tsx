@@ -1,4 +1,5 @@
 import { EMAIL, GITHUB, LINKEDIN, WHATSAPP } from '../data/contact'
+import { useLang } from '../i18n/context'
 
 const YEAR = new Date().getFullYear()
 
@@ -10,11 +11,13 @@ const LINKS = [
 ]
 
 export default function Footer() {
+  const { t } = useLang()
+
   return (
     <footer className="footer">
       <div className="container footer-inner">
         <p>
-          © {YEAR} <strong>Joel Ortiz</strong> — Construido con React, TypeScript y Vite.
+          © {YEAR} <strong>Joel Ortiz</strong> — {t('footer.built')}
         </p>
         <div className="footer-links">
           {LINKS.map((link) => (

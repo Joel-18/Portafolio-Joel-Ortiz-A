@@ -11,16 +11,18 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ProjectModal from './components/ProjectModal'
 import type { Project } from './data/projects'
+import { useLang } from './i18n/context'
 
 export default function App() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
+  const { t } = useLang()
 
   return (
     <>
       <ScrollProgress />
       <Navbar />
       <a className="skip-link" href="#contenido">
-        Saltar al contenido
+        {t('app.skip')}
       </a>
       <main id="contenido">
         <Hero />
