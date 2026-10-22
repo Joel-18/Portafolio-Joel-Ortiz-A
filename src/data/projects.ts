@@ -16,6 +16,17 @@ export type Project = {
  *  - image:  captura del proyecto en /public (opcional, ej: "capturas/techstore.png")
  */
 export const projects: Project[] = [
+
+  {
+    id: 'rastreador',
+    title: 'Rastreador de Gastos',
+    description:
+      'Rastreador de gastos personales con panel financiero (tendencia diaria, reparto por categoría y ranking), presupuesto mensual que se descuenta con los gastos, historial de meses, modo claro/oscuro y persistencia local. Los datos de ejemplo se eliminan solos al registrar tus propios gastos.',
+    tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'recharts'],
+    repoUrl: 'https://github.com/Joel-18/Rastreador-de-gastos',
+    demoUrl: 'https://joel-18.github.io/Rastreador-de-gastos/',
+    image: 'capturas/rastreador.png',
+  },
   {
     id: 'turnocero',
     title: 'TurnoCero',
