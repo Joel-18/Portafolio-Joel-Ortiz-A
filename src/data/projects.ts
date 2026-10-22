@@ -20,6 +20,21 @@ export type Project = {
  */
 export const projects: Project[] = [
   {
+    id: 'rastreador-gastos',
+    title: {
+      es: 'Rastreador de Gastos',
+      en: 'Expense Tracker',
+    },
+    description: {
+      es: 'Rastreador de gastos personales con panel financiero (tendencia diaria, reparto por categoría y ranking), presupuesto mensual que se descuenta con los gastos, historial de meses, modo claro/oscuro y persistencia local. Los datos de ejemplo se eliminan solos al registrar tus propios gastos.',
+      en: 'Personal expense tracker with a financial dashboard (daily trend, category split and ranking), a monthly budget that deducts as you spend, month history, light/dark mode and local persistence. The sample data clears itself once you record your own expenses.',
+    },
+    tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'recharts'],
+    repoUrl: 'https://github.com/Joel-18/Rastreador-de-gastos',
+    demoUrl: 'https://joel-18.github.io/rastreador-de-gastos/',
+    image: 'capturas/rastreador.png',
+  },
+  {
     id: 'turnocero',
     title: {
       es: 'TurnoCero',
@@ -33,21 +48,6 @@ export const projects: Project[] = [
     repoUrl: 'https://github.com/Joel-18/TurnoCero',
     demoUrl: 'https://turno-cero.vercel.app',
     image: 'capturas/turnocero.png',
-  },
-  {
-    id: 'rastreador-gastos',
-    title: {
-      es: 'Rastreador de gastos',
-      en: 'Expense Tracker',
-    },
-    description: {
-      es: 'Gestión de gastos personales: panel con resumen mensual, gráficos de categorías y tendencia, presupuestos, filtros y modo oscuro, con datos guardados en el navegador.',
-      en: 'Personal expense tracking: dashboard with monthly summary, category and trend charts, budgets, filters and dark mode, with data saved in the browser.',
-    },
-    tags: ['React', 'TypeScript', 'Tailwind', 'recharts', 'framer-motion'],
-    repoUrl: 'https://github.com/Joel-18/Rastreador-de-gastos',
-    demoUrl: 'https://joel-18.github.io/rastreador-de-gastos/',
-    image: 'capturas/rastreador.png',
   },
   {
     id: 'techstore',
