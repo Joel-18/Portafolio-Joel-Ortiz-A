@@ -36,7 +36,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Habilitar GitHub Pages (source: GitHub Actions)
+      - name: "Habilitar GitHub Pages (source: GitHub Actions)"
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
