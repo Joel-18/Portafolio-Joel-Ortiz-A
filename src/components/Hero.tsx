@@ -1,4 +1,5 @@
 import fotoPerfil from '../assets/avatar.jpg'
+import { GITHUB } from '../data/contact'
 
 export default function Hero() {
   return (
@@ -32,7 +33,7 @@ export default function Hero() {
               Contáctame
             </a>
             <a
-              href="https://github.com/Joel-18"
+              href={GITHUB}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-ghost"

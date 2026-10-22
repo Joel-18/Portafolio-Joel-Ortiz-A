@@ -118,7 +118,7 @@ export default function Experience() {
                     <img src={cert.image} alt={`Certificado de ${cert.title}`} loading="lazy" />
                   </a>
                   <div className="cert-body">
-                    <h3>{cert.title}</h3>
+                    <h4>{cert.title}</h4>
                     <a
                       className="btn btn-ghost btn-sm"
                       href={cert.href}

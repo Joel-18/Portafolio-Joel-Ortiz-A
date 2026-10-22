@@ -1,14 +1,12 @@
+import { EMAIL, GITHUB, LINKEDIN, WHATSAPP } from '../data/contact'
+
 const YEAR = new Date().getFullYear()
 
 const LINKS = [
-  { label: 'GH', href: 'https://github.com/Joel-18', title: 'GitHub' },
-  { label: 'in', href: 'https://www.linkedin.com/in/joel-ortiz-231a3136a', title: 'LinkedIn' },
-  {
-    label: 'WA',
-    href: 'https://wa.me/18292761619?text=Hola%20Joel%2C%20vi%20tu%20portafolio%20y%20quiero%20contactarte.',
-    title: 'WhatsApp',
-  },
-  { label: '✉', href: 'mailto:joel.18.ortiz@gmail.com', title: 'Email' },
+  { label: 'GH', href: GITHUB, title: 'GitHub' },
+  { label: 'in', href: LINKEDIN, title: 'LinkedIn' },
+  { label: 'WA', href: WHATSAPP, title: 'WhatsApp' },
+  { label: '✉', href: `mailto:${EMAIL}`, title: 'Email' },
 ]
 
 export default function Footer() {

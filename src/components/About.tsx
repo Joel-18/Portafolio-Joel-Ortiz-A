@@ -55,7 +55,7 @@ function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
   )
 }
 
-type Stat = { label: string; to?: number; suffix?: string }
+type Stat = { label: string; to: number; suffix?: string }
 
 const STATS: Stat[] = [
   { to: projects.length, label: 'Proyectos personales' },
@@ -107,16 +107,10 @@ export default function About() {
             <div className="stats-grid">
               {STATS.map((stat) => (
                 <div className="stat-card" key={stat.label}>
-                  {stat.to === undefined ? (
-                    <div className="stat-plain">{stat.label}</div>
-                  ) : (
-                    <>
-                      <div className="stat-number">
-                        <Counter to={stat.to} suffix={stat.suffix} />
-                      </div>
-                      <div className="stat-label">{stat.label}</div>
-                    </>
-                  )}
+                  <div className="stat-number">
+                    <Counter to={stat.to} suffix={stat.suffix} />
+                  </div>
+                  <div className="stat-label">{stat.label}</div>
                 </div>
               ))}
             </div>

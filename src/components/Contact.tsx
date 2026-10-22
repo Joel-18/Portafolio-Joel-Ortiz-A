@@ -2,12 +2,7 @@ import { useEffect, useRef, useState, type FormEvent, type MouseEvent } from 're
 import type { IconType } from 'react-icons'
 import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa6'
 import Reveal from './Reveal'
-
-const EMAIL = 'joel.18.ortiz@gmail.com'
-const GITHUB = 'https://github.com/Joel-18'
-const LINKEDIN = 'https://www.linkedin.com/in/joel-ortiz-231a3136a'
-const WHATSAPP =
-  'https://wa.me/18292761619?text=Hola%20Joel%2C%20vi%20tu%20portafolio%20y%20quiero%20contactarte.'
+import { EMAIL, GITHUB, LINKEDIN, WHATSAPP } from '../data/contact'
 
 type ContactLink = {
   icon: IconType

@@ -51,7 +51,7 @@ export default function Process() {
               <article className="process-step">
                 <div className="process-top">
                   <span className="process-num">{step.num}</span>
-                  <span className="process-icon">
+                  <span className="process-icon" aria-hidden="true">
                     <step.Icon />
                   </span>
                 </div>
